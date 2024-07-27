@@ -13,9 +13,9 @@
                             <p id="translation" hidden class="uk-margin-remove-top"><span style="font-size: 11px;color: #9b9b9b;margin-left: 55px;"><?= $word->translation ?></span></p>
                         </div>
 
-                        <a uk-toggle="target: #translation" uk-tooltip="სიტყვის მნიშვნელობის ნახვა" href="#" uk-icon="icon: eye" class="uk-margin-small-right uk-icon-button uk-button-primary"></a>
-                        <a data-id="<?= $word->id ?>" uk-tooltip="ეს სიტყვა ვისწავლე" href="#" uk-icon="icon: star" class="uk-margin-small-right uk-icon-button uk-button-primary add-to-learned"></a>
-                        <a data-id="<?= $word->id ?>" uk-tooltip="სიტყვის არ ჩვენება" href="#" uk-icon="icon: ban" class="uk-margin-small-right uk-icon-button uk-button-primary do-not-show"></a>
+                        <a uk-toggle="target: #translation" uk-tooltip="<?= translate('translations.word_meaning') ?>" href="#" uk-icon="icon: eye" class="uk-margin-small-right uk-icon-button uk-button-primary"></a>
+                        <a data-id="<?= $word->id ?>" uk-tooltip="<?= translate('translations.i_learned_this_word') ?>" href="#" uk-icon="icon: star" class="uk-margin-small-right uk-icon-button uk-button-primary add-to-learned"></a>
+                        <a data-id="<?= $word->id ?>" uk-tooltip="<?= translate('translations.dont_show_word') ?>" href="#" uk-icon="icon: ban" class="uk-margin-small-right uk-icon-button uk-button-primary do-not-show"></a>
                         <a id="show-me-word" target="_blank" uk-tooltip="showmeword.com info" href="https://showmeword.com/definition/english_word/<?= strtolower($word->word) ?>" uk-icon="icon: info" class="uk-margin-small-right uk-icon-button uk-button-primary"></a>
                         <!-- <a data-id="<?= '' // $word->id ?>" uk-tooltip="ეს სიტყვა არ ვიცი" href="#" uk-icon="icon: question" class="uk-icon-button uk-button-primary"></a> -->
                         <a uk-tooltip="See note" uk-toggle="target: #note-collapse; animation: uk-animation-fade;" href="#note-collapse" uk-icon="icon: chevron-down" class="<?= $word->note && !empty($word->note) ? '' : 'uk-disabled' ?> uk-margin-small-right uk-icon-button uk-button-primary note-collapse"></a>

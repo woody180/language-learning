@@ -4,14 +4,14 @@
             <ul class="uk-navbar-nav">
                 <li><a href="/">
                     <span uk-icon="icon: home; ratio: .75" class="uk-inline-block uk-position-relative" style="margin-right: 4px; top: -1px"></span>
-                    <?= \App\Engine\Libraries\Languages::translate('nav.home') ?></a></li>
-                <li><a href="<?= baseUrl('words/learned') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.learned') ?></a></li>
-                <li><a href="<?= baseUrl('words/unlearned') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.unknown') ?></a></li>
-                <li><a href="<?= baseUrl('words') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.all') ?> <span class="uk-badge"><?= initModel('word')->totalWords() ?></span></a></li>
+                    <?= translate('nav.home') ?></a></li>
+                <li><a href="<?= baseUrl('words/learned') ?>"><?= translate('nav.learned') ?></a></li>
+                <li><a href="<?= baseUrl('words/unlearned') ?>"><?= translate('nav.unknown') ?></a></li>
+                <li><a href="<?= baseUrl('words') ?>"><?= translate('nav.all') ?> <span class="uk-badge"><?= initModel('word')->totalWords() ?></span></a></li>
                 <li class="add-word-nav">
                     <a href="<?= baseUrl('words/add') ?>">
                         <span uk-icon="icon: plus; ratio: .6"></span>
-                        <?= \App\Engine\Libraries\Languages::translate('translations.add_word') ?>
+                        <?= translate('translations.add_word') ?>
                     </a>
                 </li>
             </ul>
