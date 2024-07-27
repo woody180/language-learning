@@ -7,7 +7,7 @@
                     <?= \App\Engine\Libraries\Languages::translate('nav.home') ?></a></li>
                 <li><a href="<?= baseUrl('words/learned') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.learned') ?></a></li>
                 <li><a href="<?= baseUrl('words/unlearned') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.unknown') ?></a></li>
-                <li><a href="<?= baseUrl('words') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.all') ?></a></li>
+                <li><a href="<?= baseUrl('words') ?>"><?= \App\Engine\Libraries\Languages::translate('nav.all') ?> <span class="uk-badge"><?= initModel('word')->totalWords() ?></span></a></li>
                 <li class="add-word-nav">
                     <a href="<?= baseUrl('words/add') ?>">
                         <span uk-icon="icon: plus; ratio: .6"></span>

@@ -160,4 +160,10 @@ class Model_Word extends RedBean_SimpleModel {
         $word->repeatable = $isTrue;
         R::store($word);
     }
+
+
+    public function totalWords()
+    {
+        return R::count('word');
+    }
 }
