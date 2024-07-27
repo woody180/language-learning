@@ -24,5 +24,7 @@ return [
     'foreign_word' => 'Foreign word',
     'foreign_word_translation' => 'Foreign word translation',
     'transcription' => 'Transcription',
-    'additional' => 'Additional'
+    'additional' => 'Additional',
+    'dont_show_word' => 'Don\'t show word',
+    'word_meaning' => 'Show word meaning'
 ];
