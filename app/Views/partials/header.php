@@ -8,17 +8,16 @@
                 <li><a href="<?= baseUrl('words/learned') ?>"><?= translate('nav.learned') ?></a></li>
                 <li><a href="<?= baseUrl('words/unlearned') ?>"><?= translate('nav.unknown') ?></a></li>
                 <li><a href="<?= baseUrl('words') ?>"><?= translate('nav.all') ?> <span class="uk-badge"><?= initModel('word')->totalWords() ?></span></a></li>
-                <li class="add-word-nav">
-                    <a href="<?= baseUrl('words/add') ?>">
-                        <span uk-icon="icon: plus; ratio: .6"></span>
-                        <?= translate('translations.add_word') ?>
-                    </a>
-                </li>
             </ul>
         </div>
 
 
         <div class="nav-overlay uk-navbar-right">
+
+            <a class="uk-button uk-button-default uk-button-small uk-border-rounded" href="<?= baseUrl('words/add') ?>">
+                <span uk-icon="icon: plus; ratio: .6"></span>
+                <?= translate('translations.add_word') ?>
+            </a>
 
             <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
 
