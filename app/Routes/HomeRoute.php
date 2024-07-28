@@ -65,17 +65,11 @@ $router->delete('words/(:num)', function($req, $res, $x1, $x2) {
 
 
 // Search
-$router->get('search', function($req, $res) {
-    initModel('word');
-    $words = R::find('word', 'word like ? or translation like ?', ["%".query('word')."%", "%".query('word')."%"]);
-
-    $data = new stdClass();
-    $data->data = $words;
-    $data->pager = null;
-    
+$router->get('search', function($req, $res)
+{    
     return $res->render('words', [
         'title' => Languages::translate('translations.search_results'),
-        'data' => $data,
+        'data' => initModel('word')->search(query('word')),
         'lang' => Languages::class
     ]);
 });

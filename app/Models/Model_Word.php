@@ -47,6 +47,30 @@ class Model_Word extends RedBean_SimpleModel {
 
 
 
+    public function search($word)
+    {
+        $totalPages = R::count('word', 'word like ? or translation like ?', ["%".$word."%", "%".$word."%"]);
+
+        $currentPage = $_GET["page"] ?? 1;
+        if ($currentPage < 1 OR $currentPage > $totalPages) $currentPage = 1;
+        $limit = 12;
+        $offset = ($currentPage - 1) * $limit;  
+        $pagingData = pager([
+            'total' => $totalPages,
+            'limit' => $limit,
+            'current' => $currentPage
+        ]); 
+        $words = R::find('word', "word like ? or translation like ? order by id desc limit $limit offset $offset", ["%".$word."%", "%".$word."%"]);
+
+        $data = new stdClass();
+        $data->data = $words;
+        $data->pager = $totalPages > $limit ? $pagingData : null;
+
+        return $data;
+    }
+
+
+
     public function addWord($wordData)
     {
         $wordData['repeatable'] = 1;
