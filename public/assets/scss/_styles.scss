@@ -25,6 +25,11 @@ src: url('../fonts/bpg-arial-caps-webfont.eot?#iefix') format('embedded-opentype
 }
 
 
+html, body {
+    width: 100%; height: 100%;
+}
+
+
 h1, h2, h3, h4, h5, h6, .uk-navbar-nav>li>a {
     font-family: 'BPG Arial Caps';
 }
@@ -158,3 +163,10 @@ input:checked + .uk-switch-slider.uk-switch-big:before {
     }
 }
   
+
+
+.uk-card-default {
+    p {
+        color: #749ac1;
+    }
+}

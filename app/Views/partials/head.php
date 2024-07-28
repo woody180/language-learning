@@ -17,6 +17,6 @@
     
     <title><?= $title ?? APPNAME; ?></title>
 </head>
-<body>
+<body class="uk-background-muted">
 
     <?php $this->insert('partials/header') ?>

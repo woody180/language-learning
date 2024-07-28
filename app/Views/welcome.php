@@ -5,12 +5,12 @@
     <div class="uk-container uk-container-small">
 
         <div class="uk-margin-large-top uk-border-rounded">
-            <div class="uk-card uk-card-default">
+            <div class="uk-card uk-card-default uk-border-rounded">
                 <div class="uk-card-body">
                     <div class="uk-flex uk-flex-middle">
-                        <div class="uk-text-lead uk-margin-remove uk-flex-1 uk-flex uk-flex-middle">
-                            <p id="word" class="uk-margin-right uk-text-capitalize"><?= $word->word ?></p>
-                            <p id="translation" hidden class="uk-margin-remove-top"><span style="font-size: 11px;color: #9b9b9b;margin-left: 55px;"><?= $word->translation ?></span></p>
+                        <div class="uk-text-lead uk-margin-remove uk-flex-1">
+                            <p id="word" class="uk-margin-small-right uk-text-capitalize uk-margin-remove-bottom"><?= $word->word ?></p>
+                            <p id="translation" hidden class="uk-margin-remove-top uk-margin-remove-bottom"><span class="uk-text-small"><?= $word->translation ?></span></p>
                         </div>
 
                         <a uk-toggle="target: #translation" uk-tooltip="<?= translate('translations.word_meaning') ?>" href="#" uk-icon="icon: eye" class="uk-margin-small-right uk-icon-button uk-button-primary"></a>
@@ -23,14 +23,14 @@
                 </div>
             </div>
 
-            <div class="word-note uk-card uk-card-default uk-card-body uk-margin-small" id="note-collapse" hidden>
+            <div class="word-note uk-card uk-card-default uk-card-body uk-margin-small uk-border-rounded" id="note-collapse" hidden>
                 <p><?= $word->note ?></p>
             </div>
 
             <div class="uk-flex uk-flex-right uk-margin">
-                <button id="randomize-words" class="uk-button uk-button-primary uk-border-rounded" data-id="<?= $word->id ?>">
-                    <span><?= $lang::translate('translations.other_word') ?></span>
-                    <span uk-icon="icon: refresh"></span>
+                <button id="randomize-words" class="uk-button uk-button-primary uk-border-rounded uk-button-icon uk-button-icon-left uk-width-1-1" data-id="<?= $word->id ?>">
+                    <span class="uk-position-relative" style="top: 1px; font-size: 12px"><?= $lang::translate('translations.other_word') ?></span>
+                    <span uk-icon="icon: refresh; ratio: .8"></span>
                 </button>
             </div>
         </div>

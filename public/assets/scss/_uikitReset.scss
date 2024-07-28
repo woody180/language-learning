@@ -1,0 +1,130 @@
+// Buttons
+button {
+    outline: none;
+}
+.uk-button-success {
+    background-color: #42ae32;
+    color: white !important;
+}
+
+.uk-button {
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .2s ease;
+
+    &.uk-button-secondary {
+        //background-color: var(--secondaryColor);
+
+        &:hover, &:focus {
+            //background-color: darken($secondaryColor, 5%);
+        }
+        
+    }
+
+    &.uk-button-primary {
+
+        //background-color: var(--primaryColor);
+
+        &:hover, &:focus {
+            //background-color: darken($primaryColor, 5%);
+        }
+       
+    }
+
+    &.uk-button-round {
+        border-radius: 25px;
+    }
+
+    .uk-icon {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        top: -2px;
+    }
+
+
+    // Button with icon
+    &.uk-button-icon {
+        position: relative;
+
+        &::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        @mixin iconStyle($pos, $oposit) {
+            margin-#{$oposit}: 20px;
+            width: 40px;
+            height: 38px;
+            float: $pos;
+            position: relative;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease;
+
+            @if $pos == 'left' {
+                border-right: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            @if $pos == 'right' {
+                border-left: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+        }
+        
+            
+        &.uk-button-icon-right {
+            padding-right: 0;
+            .uk-icon {
+                @include iconStyle(right, left);
+            }
+
+            &:hover {
+                .uk-icon {
+                    //background-color: darken($primaryColor, 15%);
+                }
+            }
+        }
+        &.uk-button-icon-left {
+            padding-left: 0;
+            .uk-icon {
+                @include iconStyle(left, right);
+            }
+
+            &:hover {
+                .uk-icon {
+                    //background-color: darken($primaryColor, 15%);
+                }
+            }
+        }
+
+        &.uk-button-small {
+            //font-size: .7rem;
+            .uk-icon {
+                width: 32px;
+                height: 28px;
+                svg {
+                    width: 15px;
+                }
+            }
+        }
+    }
+
+    &.uk-button-small {
+        font-size: .7rem;
+    }
+}
+
+
+
+
+
+
+// Cards
+.uk-card-default {
+    // box-shadow: -5px 5px 0 0 #7bb6f1;
+    border: 1px solid #7bb6f1;
+    background: linear-gradient(15deg, #f0f3f9, #fdfdfd, #ffffff);
+}
