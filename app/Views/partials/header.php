@@ -15,7 +15,6 @@
         <div class="nav-overlay uk-navbar-right">
 
             <a class="uk-button uk-button-default add-word-nav uk-button-small uk-border-rounded" href="<?= baseUrl('words/add') ?>">
-                <span uk-icon="icon: plus; ratio: .6"></span>
                 <?= translate('translations.add_word') ?>
             </a>
 
