@@ -16,7 +16,7 @@
 
         <ul class="uk-list uk-list-striped">
             <?php foreach ($data->data as $word): ?>
-                <li>
+                <li class="word-list-item">
 
                     <div class="uk-flex uk-flex-middle uk-flex-between">
                         <div class="uk-text-bold uk-text-capitalize">

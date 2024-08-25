@@ -31,7 +31,8 @@ export default class MainClass extends SketchEngine {
         switcher: '.uk-switch input',
         edit: '.edit-word',
         showMeWordUrl: '#show-me-word',
-        nav: '.uk-navbar-nav'
+        nav: '.uk-navbar-nav',
+        wordItem: '.word-list-item'
     };
 
 
@@ -115,7 +116,7 @@ export default class MainClass extends SketchEngine {
         },
 
 
-        addToNotLearned(id)
+        addToNotLearned(e, id)
         {
             fetch(`${this.variables.baseurl}/words/not-learned/${id}`, {
                 method: 'PUT',
@@ -126,6 +127,8 @@ export default class MainClass extends SketchEngine {
             })
             .then(res => res.json())
             .then(res => {
+
+                e.target.closest(this.selectors.wordItem).remove();
 
                 UIkit.notification({
                     message: `<span class="uk-text-small">${res}</span>`,
@@ -146,7 +149,7 @@ export default class MainClass extends SketchEngine {
             const id = el.getAttribute('data-id');
 
             if (el.className.includes('uk-background-success')) {
-                this.functions.addToNotLearned.call(this, id);
+                this.functions.addToNotLearned.call(this, e, id);
                 el.classList.remove('uk-background-success');
                 return false;
             }
@@ -162,6 +165,8 @@ export default class MainClass extends SketchEngine {
             .then(res => {
 
                 el.classList.add('uk-background-success');
+
+                el.closest(this.selectors.wordItem).remove();
 
                 UIkit.notification({
                     message: `<span class="uk-text-small">${res}</span>`,
