@@ -128,7 +128,8 @@ export default class MainClass extends SketchEngine {
             .then(res => res.json())
             .then(res => {
 
-                e.target.closest(this.selectors.wordItem).remove();
+                const li = e.target.closest(this.selectors.wordItem);
+                if (li) li.remove();
 
                 UIkit.notification({
                     message: `<span class="uk-text-small">${res}</span>`,
@@ -166,7 +167,8 @@ export default class MainClass extends SketchEngine {
 
                 el.classList.add('uk-background-success');
 
-                el.closest(this.selectors.wordItem).remove();
+                const li = el.closest(this.selectors.wordItem);
+                if (li) li.remove();
 
                 UIkit.notification({
                     message: `<span class="uk-text-small">${res}</span>`,

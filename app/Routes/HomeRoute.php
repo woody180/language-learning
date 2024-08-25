@@ -130,11 +130,11 @@ $router->put('words/(:num)/repeatable/(:num)', function($req, $res, $x1, $x2, $x
 
 
 $router->get('words', function($req, $res) {
-
     return $res->render('words', [
         'title' => Languages::translate('translations.all_words'),
         'data' => initModel('word')->words(),
-        'lang' => Languages::class
+        'lang' => Languages::class,
+        'class' => 'all-words'
     ]);
 });
 
@@ -144,7 +144,8 @@ $router->get('words/learned', function($req, $res) {
     return $res->render('words', [
         'title' => Languages::translate('translations.learned_words'),
         'data' => initModel('word')->learned(),
-        'lang' => Languages::class
+        'lang' => Languages::class,
+        'class' => 'word-list-item'
     ]);
 });
 
@@ -154,7 +155,8 @@ $router->get('words/unlearned', function($req, $res) {
     return $res->render('words', [
         'title' => Languages::translate('translations.unknown_words'),
         'data' => initModel('word')->unlearned(),
-        'lang' => Languages::class
+        'lang' => Languages::class,
+        'class' => 'word-list-item'
     ]);
 });
 
