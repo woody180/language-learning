@@ -120,8 +120,7 @@ function str2url($str, $options = array()) {
 
 function pager(array $params) {
 
-    $currentSiteUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $currentSiteUrl = explode('&page=', $currentSiteUrl)[0];
+    $currentSiteUrl = explode('&page=', CURRENT_URL)[0];
 
     if (strpos($currentSiteUrl, '?') && !strpos($currentSiteUrl, '?page')) {
         $currentSiteUrl = $currentSiteUrl . '&';
@@ -283,7 +282,7 @@ function set_cookie(array $data) {
 
     $tobeStored = [
        'name' => $data['name'] ?? "",
-       'value' => isset($data['value']) ? toJSON($data['value']) : '',
+       'value' => isset($data['value']) ? compressData($data['value']) : '',
        'expire' => isset($data['expire']) ? time() + $data['expire'] : time() + 86400,
        'path' => $data['path'] ?? '/',
        'domain' => $data['domain'] ?? "",
@@ -299,7 +298,7 @@ function set_cookie(array $data) {
 function get_cookie(string $name) {
 
     if (isset($_COOKIE[$name])) {
-        return json_decode($_COOKIE[$name]);
+        return decompressData($_COOKIE[$name]);
     } else {
         return false;
     }
@@ -375,4 +374,19 @@ function getUserIP() {
 function clearCache() {
     array_map('unlink', array_filter((array) glob(APPROOT . "/Cache/*.txt")));
     return "All cached files cleared successfully.";
+}
+
+
+
+
+function compressData($data) {
+    $json_data = toJSON($data);
+    $compressed_data = gzcompress($json_data);
+    return base64_encode($compressed_data);
+}
+
+function decompressData($compressed_data) {
+    $data = base64_decode($compressed_data);
+    $json_data = gzuncompress($data);
+    return json_decode($json_data);
 }
