@@ -28,7 +28,20 @@ class Cli {
         }
             
 
-        self::$messages = "😤 try \n ➡  php cli make:controllers blog something \n ➡  php cli make:routes blog post \n ➡  php cli make:restful blog";
+        self::$messages = "\n😤 try\n\n";
+        self::$messages .= "➡  php cli make:controllers filename methodName\n";
+        self::$messages .= "➡  php cli make:routes filename httpVerb\n";
+        self::$messages .= "➡  php cli make:restful blog\n";
+        self::$messages .= "➡  php cli make:models modelname\n";
+        self::$messages .= "➡  php cli make:migration ModelName\n";
+        self::$messages .= "➡  php cli make:singleton className\n\n";
+        self::$messages .= "Create languages: \n➡  php cli language:set english en --primary\n";
+        self::$messages .= "➡  php cli language:set georgian ge\n\n";
+        self::$messages .= "Set primary language: \n➡  php cli language:primary ge\n\n";
+        self::$messages .= "Get language list: \n➡  php cli language:list show\n\n";
+        self::$messages .= "Delete language: \n➡  php cli language:delete en\n\n";
+        self::$messages .= "Delete all languages: \n➡  php cli language:refresh all\n\n";
+        self::$messages .= "For more info visit: https://github.com/woody180/toolx_php_framework\n\n";
 
         if ( isset($argv[1]) ) {
             if (preg_match('/:/', $argv[1])) {
@@ -77,7 +90,8 @@ class Cli {
             $langList = [];
             if (file_exists($path)) {
                 $langList = file_get_contents($path);
-                $langList = json_decode($langList, true);
+                if (!empty($langList)) $langList = json_decode($langList, true);
+                else $langList = [];
             }
 
             // Check if language already stored
@@ -205,10 +219,9 @@ class Cli {
     }
 
 
-    private static function make(string $fileType, string $fileName, string $param = null) {
+    private static function make(string $fileType, string $fileName, ?string $param = null) {
 
         $type = ucfirst($fileType);
-
 
         // print_r($fileType . "\n");
         // die;
@@ -220,7 +233,6 @@ class Cli {
             die("✔ - Singleton file - \"{$fileName}\" created successfully. \n");
         }
 
-
         // If type is restful
         if ($fileType === 'restful') {
 
@@ -228,13 +240,11 @@ class Cli {
             self::restRoute($fileName);
 
             // Make routes directory with route files
-                
             self::restControllerClean($fileName);
      
             die("✔ - Restful Route and Conttoller were created \n");
         }
 
-        
         // Check dir
         if (preg_match('/[\/]/', $fileName)) {
 
@@ -270,7 +280,7 @@ class Cli {
         
 
         // Get file content
-        $boilerPlate = call_user_func(['Cli', ucfirst($fileType)], ucfirst($fileName), $type, $param);
+        $boilerPlate = call_user_func(['Cli', ucfirst($fileType)], ucfirst($fileName), $type, $param ?? '');
         if ($fileType === 'models') $fileName = '';
 
         // Create file with content
