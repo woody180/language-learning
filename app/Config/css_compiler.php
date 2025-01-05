@@ -1,6 +1,6 @@
 <?php
 
-define("COMPILE", TRUE);
+define("COMPILE", FALSE);
 define("MINIFY", TRUE);
 define("COMPILATIONS_FILE_FROM", 'bootstrap.scss');
 define("COMPILED_FILE_TO", 'main.min.css');
