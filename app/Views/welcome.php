@@ -15,6 +15,7 @@
 
                         <a uk-toggle="target: #translation" uk-tooltip="<?= translate('translations.word_meaning') ?>" href="#" uk-icon="icon: eye" class="uk-margin-small-right uk-icon-button uk-button-primary"></a>
                         <a data-id="<?= $word->id ?>" uk-tooltip="<?= translate('translations.i_learned_this_word') ?>" href="#" uk-icon="icon: star" class="uk-margin-small-right uk-icon-button uk-button-primary add-to-learned"></a>
+                        <a data-id="<?= $word->id ?>" uk-tooltip="<?= $lang::translate('translations.edit_word') ?>" href="<?= baseUrl("words/{$word->id}/edit") ?>" uk-icon="icon: pencil" class="uk-margin-small-right uk-icon-button uk-button-primary edit-word"></a>
                         <a data-id="<?= $word->id ?>" uk-tooltip="<?= translate('translations.dont_show_word') ?>" href="#" uk-icon="icon: ban" class="uk-margin-small-right uk-icon-button uk-button-primary do-not-show"></a>
                         <a id="show-me-word" target="_blank" uk-tooltip="showmeword.com info" href="https://showmeword.com/definition/english_word/<?= strtolower($word->word) ?>" uk-icon="icon: info" class="uk-margin-small-right uk-icon-button uk-button-primary"></a>
                         <!-- <a data-id="<?= '' // $word->id ?>" uk-tooltip="ეს სიტყვა არ ვიცი" href="#" uk-icon="icon: question" class="uk-icon-button uk-button-primary"></a> -->
