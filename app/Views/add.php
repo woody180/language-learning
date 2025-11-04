@@ -21,7 +21,7 @@
             </div>
 
             <div class="uk-margin-medium-bottom">
-                <label for="" class="uk-form-label uk-margin-remove"><?= $lang::translate('translations.transcription') ?></label>
+                <label for="" class="uk-form-label uk-margin-remove">[<?= $lang::translate('translations.transcription') ?>]</label>
                 <input name="transcription" id="add-transcription-field" type="text" class="uk-input uk-border-rounded" value="<?= getForm('transcription') ?>">
                 <?= show_error('errors', 'transcription') ?>
             </div>

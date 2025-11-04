@@ -7,7 +7,7 @@
         <div class="uk-margin-large-top uk-border-rounded">
             <div class="uk-card uk-card-default uk-border-rounded">
                 <div class="uk-card-body">
-                    <div class="uk-flex uk-flex-middle">
+                    <div class="uk-flex">
                         <div class="uk-text-lead uk-margin-remove uk-flex-1">
                             <p id="word" class="uk-margin-small-right uk-text-capitalize uk-margin-remove-bottom"><?= $word->word ?></p>
                             <p id="translation" hidden class="uk-margin-remove-top uk-margin-remove-bottom"><span class="uk-text-small"><?= $word->translation ?></span></p>

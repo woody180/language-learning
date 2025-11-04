@@ -32,7 +32,8 @@ export default class MainClass extends SketchEngine {
         edit: '.edit-word',
         showMeWordUrl: '#show-me-word',
         nav: '.uk-navbar-nav',
-        wordItem: '.word-list-item'
+        wordItem: '.word-list-item',
+        backBtn: '.back-button',
     };
 
 
@@ -44,6 +45,7 @@ export default class MainClass extends SketchEngine {
         this.lib('body').on('click', this.functions.addToLearned.bind(this), this.selectors.addToLearned);
         this.lib('body').on('click', this.functions.doNotShow.bind(this), this.selectors.doNotShow);
         this.lib(this.selectors.switcher).on('change', this.functions.repeatableToggle.bind(this));
+        // this.lib('body').on('click', this.functions.backButton.bind(this), this.selectors.backBtn);
     }
 
 
@@ -213,6 +215,7 @@ export default class MainClass extends SketchEngine {
                 document.querySelector(this.selectors.translationPar).innerText = '- ' + res.translation;
 
                 document.querySelectorAll('a[data-id]').forEach(a => a.setAttribute('data-id', res.id));
+                document.querySelector(this.selectors.edit).href = `${this.variables.baseurl}/words/${res.id}/edit`;
 
                 this.functions.showMeWordUrl.call(this, res.word);
 
@@ -251,6 +254,29 @@ export default class MainClass extends SketchEngine {
             }
             const breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
             return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+        },
+
+
+        backButton(e) {
+            e.preventDefault();
+            
+            // get previous page url
+            fetch(this.variables.baseurl + '/previous-page', {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(res => res.json())
+            .then(res => {
+                
+                console.log(res.url);
+                
+                // return window.location.href = res.url;
+                
+            })
+            .catch(err => console.log(err));
         }
     }
 }

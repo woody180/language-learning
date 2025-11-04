@@ -4,7 +4,13 @@
 <section class="uk-section">
     <div class="uk-container uk-container-small">
 
-        <h1><?= $lang::translate('translations.edit_word') ?></h1>
+        <div class="uk-flex uk-flex-middle uk-flex-between">
+            <h1><?= $lang::translate('translations.edit_word') ?></h1>
+
+            <div class="uk-flex uk-flex-right">
+                <a class="back-button uk-link-remove uk-text-uppercase" href="<?= baseUrl() . (hasFlashData('previous_url') ? ('/'.getFlashData('previous_url')) : '') ?>"> <span uk-icon="icon: arrow-left"></span> <?= $lang::translate('translations.back') ?></a>
+            </div>
+        </div>
         <hr class="uk-divider-small">
 
         <?php if (hasFlashData('success')): ?>

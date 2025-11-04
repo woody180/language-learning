@@ -26,5 +26,6 @@ return [
     'transcription' => 'Transcription',
     'additional' => 'Additional',
     'dont_show_word' => 'Don\'t show word',
-    'word_meaning' => 'Show word meaning'
+    'word_meaning' => 'Show word meaning',
+    'back' => 'Back',
 ];
