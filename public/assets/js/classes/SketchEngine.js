@@ -169,7 +169,7 @@ export default class SketchEngine {
 
             text(msg = undefined) {
                 if (msg === undefined) {
-                    return el.innerText;
+                    return this.el()[0].innerText;
                 } else {
                     this.el().forEach(el => {
                         el.innerText = msg;
@@ -179,7 +179,7 @@ export default class SketchEngine {
 
             html(data = undefined) {
                 if (data === undefined) {
-                    return el.innerHTML;
+                    return this.el()[0].innerHTML;
                 } else {
                     this.el().forEach(el => {
                         el.innerHTML = data;
