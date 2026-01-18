@@ -3,6 +3,7 @@
 use App\Engine\Libraries\Router;
 use App\Engine\Libraries\Validation;
 use App\Engine\Libraries\Languages;
+use League\Plates\Template\Func;
 
 $router = Router::getInstance();
 
@@ -166,3 +167,51 @@ $router->get('words/randomize', function($req, $res)
     return $res->send(initModel('word')->randomize(query('word_id')));
 }, 
 ['Middlewares/checkAjax']);
+
+
+
+$router->get('get-word/(:num)', function($req, $res, $x1, $x2) {
+    initModel('word');
+    return $res->send( R::findOne('word', 'id = ?', [$x2]));
+});
+
+
+
+$router->get('generate-setence/(:num)', function($req, $res, $x1, $wordID) {
+
+    $wordData = initModel('word')->getWord($wordID);
+    $word = strtolower($wordData->word);
+
+    // Load all txt files from books directory
+    $allBooks = glob(APPROOT . '/db/books/*.txt');
+
+    $matches = [];
+
+    foreach ($allBooks as $bookFile) {
+        $fileContent = file_get_contents($bookFile);
+
+        // Split into sentences
+        $sentences = preg_split('/(?<=[.?!])\s+/', $fileContent);
+
+        // Collect sentences containing the word
+        foreach ($sentences as $sentence) {
+            if (stripos($sentence, $word) !== false) {
+                $matches[] = trim($sentence);
+            }
+        }
+    }
+
+    // Pick one random sentence from all matches
+    $result = '';
+    if (!empty($matches)) $result = $matches[array_rand($matches)];
+
+    return $res->send([
+        'total'     => count($matches),
+        'sentences' => $matches,   // all matched sentences
+        'sentence'  => $result     // one random sentence
+    ]);
+
+
+
+
+}, ['Middlewares/checkAjax']);

@@ -28,13 +28,21 @@
                 <p><?= $word->note ?></p>
             </div>
 
-            <div class="uk-flex uk-flex-right uk-margin">
-                <button id="randomize-words" class="uk-button uk-button-primary uk-border-rounded uk-button-icon uk-button-icon-left uk-width-1-1" data-id="<?= $word->id ?>">
+            <div class="uk-flex uk-margin">
+                <button id="randomize-words" class="uk-button uk-button-primary uk-border-rounded uk-button-icon uk-button-icon-left uk-flex-1 uk-margin-small-right" data-id="<?= $word->id ?>">
                     <span class="uk-position-relative" style="top: 1px; font-size: 12px"><?= $lang::translate('translations.other_word') ?></span>
                     <span uk-icon="icon: refresh; ratio: .8"></span>
                 </button>
+
+                <button class="generate-sentence uk-button uk-button-primary uk-border-rounded uk-button-icon uk-button-icon-left uk-flex-1 uk-margin-small-left" data-id="<?= $word->id ?>">
+                    <span class="uk-position-relative" style="top: 1px; font-size: 12px">Generate sentence</span>
+                    <span uk-icon="icon: nut; ratio: .8"></span>
+                </button>
             </div>
         </div>
+
+
+        <div id="sentence"></div>
         
     </div>
 </section>

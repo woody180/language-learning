@@ -190,4 +190,10 @@ class Model_Word extends RedBean_SimpleModel {
     {
         return R::count('word');
     }
+
+
+    public function getWord($wordID)
+    {
+        return R::findOne('word', 'id = ?', [$wordID]);
+    }
 }
