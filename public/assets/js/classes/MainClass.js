@@ -9,7 +9,9 @@ export default class MainClass extends SketchEngine {
 
     variables = {
         position: 'bottom-center',
-        timeout: 2000
+        timeout: 2000,
+        wordID: 0,
+        sentences: []
     }
 
     execute = [
@@ -34,6 +36,7 @@ export default class MainClass extends SketchEngine {
         nav: '.uk-navbar-nav',
         wordItem: '.word-list-item',
         backBtn: '.back-button',
+        generateSetenceBtn: '.generate-sentence'
     };
 
 
@@ -45,11 +48,57 @@ export default class MainClass extends SketchEngine {
         this.lib('body').on('click', this.functions.addToLearned.bind(this), this.selectors.addToLearned);
         this.lib('body').on('click', this.functions.doNotShow.bind(this), this.selectors.doNotShow);
         this.lib(this.selectors.switcher).on('change', this.functions.repeatableToggle.bind(this));
-        // this.lib('body').on('click', this.functions.backButton.bind(this), this.selectors.backBtn);
+        this.lib('body').on('click', this.functions.generateSetence.bind(this), this.selectors.generateSetenceBtn);
     }
 
 
     functions = {
+
+
+        hilightWordInSentence(word) {
+            const sentenceEl = document.querySelector('#sentence');
+            if (sentenceEl) {
+                const regex = new RegExp(`(${word}(\\w+)?)`, 'gim');
+                sentenceEl.innerHTML = sentenceEl.innerHTML.replace(regex, `<mark><u>$&</u></mark>`);
+            }
+        },
+
+
+        generateSetence(e)
+        {
+            e.preventDefault();
+
+            const id = document.querySelector('[data-id]').getAttribute('data-id');
+
+            if (id === this.variables.wordID && this.variables.sentences.length) {
+                console.log('From cache');
+                const randomIndex = Math.floor(Math.random() * this.variables.sentences.length);
+                document.querySelector('#sentence').innerText = 'Total sentences: ' + this.variables.sentences.length + ' \n\n ' + this.variables.sentences[randomIndex];
+                this.functions.hilightWordInSentence(this.lib('#word').text());
+                return false;
+            }
+
+            fetch(`${this.variables.baseurl}/generate-setence/${id}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.sentence.length) {
+                    this.variables.sentences = res.sentences;
+                    document.querySelector('#sentence').innerText = 'Total sentences: ' + res.total + ' \n\n ' + res.sentence;
+                    this.variables.wordID = id;
+
+                    this.functions.hilightWordInSentence(this.lib('#word').text());
+                } else {
+                    document.querySelector('#sentence').innerText = 'No sentence generated.';
+                }
+            })
+        },
+
 
         // Active navigation
         activeNavLinks()
@@ -199,6 +248,8 @@ export default class MainClass extends SketchEngine {
             })
             .then(res => res.json())
             .then(res => {
+
+                this.lib('#sentence').text('');
 
                 this.lib('.word-note p').text('...');
                 if (!res.note) {
