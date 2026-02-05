@@ -67,7 +67,7 @@ $router->delete('words/(:num)', function($req, $res, $x1, $x2) {
 
 // Search
 $router->get('search', function($req, $res)
-{    
+{
     return $res->render('words', [
         'title' => Languages::translate('translations.search_results'),
         'data' => initModel('word')->search(query('word')),
@@ -172,6 +172,15 @@ $router->get('words/randomize', function($req, $res)
 
 $router->get('get-word/(:num)', function($req, $res, $x1, $x2) {
     initModel('word');
+
+    if (!$req->isAjax()) {
+        $word = R::findOne('word', 'id = ?', [$x2]) ?? abort();
+        return $res->render('welcome', [
+            'word' => $word,
+            'lang' => Languages::class
+        ]);
+    }
+
     return $res->send( R::findOne('word', 'id = ?', [$x2]));
 });
 
