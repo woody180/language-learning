@@ -19,9 +19,9 @@
                 <li class="<?= $class ?>">
 
                     <div class="uk-flex uk-flex-middle uk-flex-between">
-                        <div class="uk-text-bold uk-text-capitalize">
+                        <a href="<?= baseUrl('get-word/' . $word->id) ?>" class="uk-link-text uk-text-bold uk-text-capitalize">
                             <?= $word->word ?> - <span style="font-size: 10px;color: #ababab; margin-left: 55px"><?= $word->translation ?></span>
-                        </div>
+                        </a>
                         
                         <div class="uk-flex uk-flex-middle">
                             <div>
