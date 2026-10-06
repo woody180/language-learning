@@ -4,10 +4,20 @@
             <ul class="uk-navbar-nav">
                 <li><a href="/">
                     <span uk-icon="icon: home; ratio: .75" class="uk-inline-block uk-position-relative" style="margin-right: 4px; top: -1px"></span>
-                    <?= translate('nav.home') ?></a></li>
-                <li><a href="<?= baseUrl('words/learned') ?>"><?= translate('nav.learned') ?></a></li>
-                <li><a href="<?= baseUrl('words/unlearned') ?>"><?= translate('nav.unknown') ?></a></li>
-                <li><a href="<?= baseUrl('words') ?>"><?= translate('nav.all') ?> <span class="uk-badge"><?= initModel('word')->totalWords() ?></span></a></li>
+                    <?= translate('nav.home') ?></a>
+                </li>
+
+                <li><a href="<?= baseUrl('words/learned') ?>"><?= translate('nav.learned') ?>
+                    <span class="uk-badge"><?= initModel('word')->totalWords('learned') ?></span></a>
+                </li>
+
+                <li><a href="<?= baseUrl('words/unlearned') ?>"><?= translate('nav.unknown') ?>
+                    <span class="uk-badge"><?= initModel('word')->totalWords('unlearned') ?></span></a>
+                </li>
+
+                <li><a href="<?= baseUrl('words') ?>"><?= translate('nav.all') ?> 
+                    <span class="uk-badge"><?= initModel('word')->totalWords() ?></span></a>
+                </li>
             </ul>
         </div>
 
@@ -26,7 +36,7 @@
 
             <div class="uk-navbar-item uk-width-expand">
                 <form method="GET" action="<?= baseUrl("search") ?>" class="uk-search uk-search-navbar uk-width-1-1">
-                    <input name="word" class="uk-search-input" type="search" placeholder="Search" aria-label="Search" value="<?= query('word') ?>" autofocus>
+                    <input name="word" class="uk-search-input" type="search" placeholder="Search" aria-label="Search" autofocus>
                 </form>
             </div>
 
