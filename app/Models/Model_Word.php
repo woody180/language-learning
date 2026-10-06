@@ -186,9 +186,15 @@ class Model_Word extends RedBean_SimpleModel {
     }
 
 
-    public function totalWords()
+    public function totalWords(string $type = 'all')
     {
-        return R::count('word');
+        if ($type == 'learned') {
+            return R::count('word', 'learned = ?', [1]);
+        } elseif ($type == 'unlearned') {
+            return R::count('word', 'learned = ?', [0]);
+        } else {
+            return R::count('word');
+        }
     }
 
 
