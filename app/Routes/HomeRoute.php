@@ -95,7 +95,7 @@ $router->put('words/(:num)', function($req, $res, $x1, $x2)
 
     setFlashData('success', Languages::translate('translations.word_added'));
     
-    return $res->redirectBack();
+    return $res->redirect(baseUrl("get-word/{$x2}"));
 });
 
 
