@@ -36,11 +36,16 @@ export default class MainClass extends SketchEngine {
         nav: '.uk-navbar-nav',
         wordItem: '.word-list-item',
         backBtn: '.back-button',
-        generateSetenceBtn: '.generate-sentence'
+        generateSetenceBtn: '.generate-sentence',
+        badgeLearned: '.badge-learned',
+        badgeUnlearned: '.badge-unlearned'
     };
 
 
-    catchDOM() {}
+    catchDOM() {
+        this.dom.set('badgeLearned', this.lib(this.selectors.badgeLearned));
+        this.dom.set('badgeUnlearned', this.lib(this.selectors.badgeUnlearned));
+    }
 
 
     bindEvents() {
@@ -167,6 +172,17 @@ export default class MainClass extends SketchEngine {
         },
 
 
+        changeNavBadgeNumber(action = 'learned') {
+            if (action === 'learned') {
+                this.dom.get('badgeLearned').text(parseInt(this.dom.get('badgeLearned').text()) + 1);
+                this.dom.get('badgeUnlearned').text(parseInt(this.dom.get('badgeUnlearned').text()) - 1);
+            } else {
+                this.dom.get('badgeUnlearned').text(parseInt(this.dom.get('badgeUnlearned').text()) + 1);
+                this.dom.get('badgeLearned').text(parseInt(this.dom.get('badgeLearned').text()) - 1);
+            }
+        },
+
+
         addToNotLearned(e, id)
         {
             fetch(`${this.variables.baseurl}/words/not-learned/${id}`, {
@@ -178,6 +194,9 @@ export default class MainClass extends SketchEngine {
             })
             .then(res => res.json())
             .then(res => {
+
+                // Change badge number
+                this.functions.changeNavBadgeNumber.call(this, 'no-learned');
 
                 const li = e.target.closest(this.selectors.wordItem);
                 if (li) li.remove();
@@ -215,6 +234,9 @@ export default class MainClass extends SketchEngine {
             })
             .then(res => res.json())
             .then(res => {
+
+                // Change badge number
+                this.functions.changeNavBadgeNumber.call(this, 'learned');
 
                 el.classList.add('uk-background-success');
 
