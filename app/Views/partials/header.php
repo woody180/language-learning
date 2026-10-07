@@ -8,11 +8,11 @@
                 </li>
 
                 <li><a href="<?= baseUrl('words/learned') ?>"><?= translate('nav.learned') ?>
-                    <span class="uk-badge"><?= initModel('word')->totalWords('learned') ?></span></a>
+                    <span class="uk-badge badge-learned"><?= initModel('word')->totalWords('learned') ?></span></a>
                 </li>
 
                 <li><a href="<?= baseUrl('words/unlearned') ?>"><?= translate('nav.unknown') ?>
-                    <span class="uk-badge"><?= initModel('word')->totalWords('unlearned') ?></span></a>
+                    <span class="uk-badge badge-unlearned"><?= initModel('word')->totalWords('unlearned') ?></span></a>
                 </li>
 
                 <li><a href="<?= baseUrl('words') ?>"><?= translate('nav.all') ?> 
